@@ -1,4 +1,4 @@
-const API_URL = "https://65451c245a0b4b04436da50b.mockapi.io/";
+const API_URL = "http://localhost:3000";
 
 const dataContainer = document.getElementById("results");
 
@@ -11,7 +11,7 @@ const btnSendChanges = document.getElementById("btnSendChanges");
 
 // FUNCIONES
 async function getData() {
-  await fetch(`${API_URL}users/`)
+  await fetch(`${API_URL}`)
     .then((response) => response.json())
     .then((data) => {
       dataContainer.innerText = "";
@@ -58,7 +58,7 @@ btnPost.addEventListener("click", async () => {
     name: inputPostNombre.value,
     lastname: inputPostApellido.value,
   };
-  await fetch(`${API_URL}users/`, {
+  await fetch(`${API_URL}/crear`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -83,7 +83,7 @@ btnSendChanges.addEventListener("click", async () => {
     name: inputPutNombre.value,
     lastname: inputPutApellido.value,
   };
-  await fetch(`${API_URL}users/${inputPutId.value}`, {
+  await fetch(`${API_URL}/actualizar/${inputPutId.value}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -107,7 +107,7 @@ btnSendChanges.addEventListener("click", async () => {
 // FETCH DEL DELETE A UN USUARIO
 const inputDelete = document.getElementById("inputDelete");
 btnDelete.addEventListener("click", async () => {
-  await fetch(`${API_URL}users/${inputDelete.value}`, {
+  await fetch(`${API_URL}/eliminar/${inputDelete.value}`, {
     method: "delete",
     headers: {
       "Content-Type": "application/json",
